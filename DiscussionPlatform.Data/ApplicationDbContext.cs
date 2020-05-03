@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using DiscussionPlatform.Models;
+using DiscussionPlatform.Data.Models;
 
 namespace DiscussionPlatform.Data
 {
@@ -15,12 +16,9 @@ namespace DiscussionPlatform.Data
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-            // Customize the ASP.NET Identity model and override the defaults if needed.
-            // For example, you can rename the ASP.NET Identity table names and more.
-            // Add your customizations after calling base.OnModelCreating(builder);
-        }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Platform> Platforms { get; set; }
+        public DbSet<Mail> Mails { get; set; }
+        public DbSet<MailReply> MailReplies { get; set; }
     }
 }

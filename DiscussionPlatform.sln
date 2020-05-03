@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.1082
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscussionPlatform", "DiscussionPlatform\DiscussionPlatform.csproj", "{BF0BD7DE-3A07-453D-B741-B41789009E4C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscussionPlatform.Data", "DiscussionPlatform.Data\DiscussionPlatform.Data.csproj", "{EAB928F3-22AC-4328-A5B1-575EDDB3ED0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{BF0BD7DE-3A07-453D-B741-B41789009E4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF0BD7DE-3A07-453D-B741-B41789009E4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF0BD7DE-3A07-453D-B741-B41789009E4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAB928F3-22AC-4328-A5B1-575EDDB3ED0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAB928F3-22AC-4328-A5B1-575EDDB3ED0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAB928F3-22AC-4328-A5B1-575EDDB3ED0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAB928F3-22AC-4328-A5B1-575EDDB3ED0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
