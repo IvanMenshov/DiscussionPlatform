@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DiscussionPlatform.Data\DiscussionPlatform.Data.csproj" />
+    <ProjectReference Include="..\DiscussionPlatform.Service\DiscussionPlatform.Service.csproj" />
   </ItemGroup>
 
 </Project>

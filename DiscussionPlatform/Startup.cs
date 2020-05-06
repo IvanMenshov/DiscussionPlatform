@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using DiscussionPlatform.Data;
 using DiscussionPlatform.Models;
 using DiscussionPlatform.Services;
+using DiscussionPlatform.Data.Inerfaces;
+using DiscussionPlatform.Service;
 
 namespace DiscussionPlatform
 {
@@ -35,6 +37,7 @@ namespace DiscussionPlatform
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddScoped<IPlatform, PlatformService>();
 
             services.AddMvc();
         }

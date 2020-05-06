@@ -1,0 +1,21 @@
+﻿@model DiscussionPlatform.Models.Platform.PlatformIndexModel
+
+<h1>Platforms</h1>
+
+<table class="table table-hover" id="platformIndexTable">
+    <tbody>
+        @foreach(var platform in Model.PlatformList)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Platform" asp-action="Topic" asp-route-id="@platform.Id">
+                        @platform.Name
+                    </a>
+                </td>
+                <td>
+                    @platform.Description
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

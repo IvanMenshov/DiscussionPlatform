@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscussionPlatform", "Discu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscussionPlatform.Data", "DiscussionPlatform.Data\DiscussionPlatform.Data.csproj", "{EAB928F3-22AC-4328-A5B1-575EDDB3ED0D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscussionPlatform.Service", "DiscussionPlatform.Service\DiscussionPlatform.Service.csproj", "{313394F7-C546-4ABE-B6A9-766338D257F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{EAB928F3-22AC-4328-A5B1-575EDDB3ED0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAB928F3-22AC-4328-A5B1-575EDDB3ED0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAB928F3-22AC-4328-A5B1-575EDDB3ED0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{313394F7-C546-4ABE-B6A9-766338D257F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{313394F7-C546-4ABE-B6A9-766338D257F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{313394F7-C546-4ABE-B6A9-766338D257F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{313394F7-C546-4ABE-B6A9-766338D257F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
