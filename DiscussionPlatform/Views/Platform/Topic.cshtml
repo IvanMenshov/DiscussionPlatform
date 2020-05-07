@@ -1,0 +1,41 @@
+﻿@model DiscussionPlatform.Models.Platform.PlatformTopicModel
+
+<h1>Добро пожаловать на @Model.Platform.Name</h1>
+
+@if (Model.Mails.Any())
+{
+    <table class="table table-bordered table-hover">
+        <tbody>
+            @foreach(var mail in Model.Mails)
+            {
+                <tr>
+                    <td>
+                        <a asp-controller="Mail" asp-action="Index" asp-route-id="@mail.Id">
+                            @mail.Title
+                        </a>
+                    </td>
+                    <td>
+                        @mail.AuthorName
+                    </td>
+                    <td>
+                        @mail.DateMailed
+                    </td>
+                    <td>
+                        @mail.RepliesCount
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+else{
+    <div class="noMails">
+        <h3>
+            Еще нет ответа на @Model.Platform.Name <br />
+            <a asp-controller="Mail" asp-action="Create" asp-route-id="@Model.Platform.Id">
+                <span>Создать</span>
+            </a>
+        </h3>
+    </div>
+}

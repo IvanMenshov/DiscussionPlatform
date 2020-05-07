@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DiscussionPlatform.Data.Inerfaces;
 using DiscussionPlatform.Data.Models;
+using DiscussionPlatform.Models.Mail;
 using DiscussionPlatform.Models.Platform;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,7 +16,7 @@ namespace DiscussionPlatform.Controllers
 
         public PlatformController(IPlatform platformService)
         {
-            _platformService = platformService; 
+            _platformService = platformService;
         }
 
         public IActionResult Index()
@@ -36,9 +37,47 @@ namespace DiscussionPlatform.Controllers
             return View(model);
         }
 
-        //public IActionResult Topic(int id)
-        //{
-        //    var platform = _platformService.GetById(id);
-        //}
+        public IActionResult Topic(int id)
+        {
+            var platform = _platformService.GetById(id);
+            var mails = platform.Mails;
+
+            var mailListings = mails.Select(mail => new MailListingModel
+            {
+                Id = mail.Id,
+                AuthorId = mail.User.Id,
+                AuthorRating = mail.User.Rating,
+                Title = mail.Title,
+                DateMailed = mail.DateOfCreation.ToString(),
+                RepliesCount = mail.Replies.Count(),
+                Platform = BuildPlatformListing(mail)
+            });
+
+            var model = new PlatformTopicModel
+            {
+                Mails = mailListings,
+                Platform = BuildPlatformListing(platform)
+            };
+
+            return View();
+        }
+
+        private PlatformListingModel BuildPlatformListing(Mail mail)
+        {
+            var platform = mail.Platform;
+
+            return BuildPlatformListing(platform);
+        }
+
+        private PlatformListingModel BuildPlatformListing(Platform platform)
+        {
+            return new PlatformListingModel
+            {
+                Id = platform.Id,
+                Name = platform.Title,
+                Description = platform.Description,
+                PlatformImageUrl = platform.ImageUrl
+            };
+        }
     }
 }
