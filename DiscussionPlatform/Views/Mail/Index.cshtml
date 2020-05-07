@@ -1,0 +1,29 @@
+﻿@model DiscussionPlatform.Models.Mail.MailIndexModel
+
+<h1>@Model.Title</h1>
+
+<div>
+    Автор: @Model.AuthorName (@Model.AuthorRating)
+    Дата создания: @Model.DateOfCreation
+</div>
+
+<div>
+    @Model.MailContent
+</div>
+
+@if (Model.Replies.Any())
+{
+    foreach(var reply in Model.Replies)
+    {
+        <div>
+            <div>
+                Ответ автора: @reply.AuthorName
+                Ответ создан: @reply.DateOfCreation
+            </div>
+
+            <div>
+                Ответ: @reply.ReplyContent
+            </div>
+        </div>
+    }
+}

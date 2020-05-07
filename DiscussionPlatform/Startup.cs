@@ -38,6 +38,7 @@ namespace DiscussionPlatform
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddScoped<IPlatform, PlatformService>();
+            services.AddScoped<IMail, MailService>();
 
             services.AddMvc();
         }

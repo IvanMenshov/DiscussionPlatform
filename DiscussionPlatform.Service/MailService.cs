@@ -1,6 +1,7 @@
 ﻿using DiscussionPlatform.Data;
 using DiscussionPlatform.Data.Inerfaces;
 using DiscussionPlatform.Data.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +41,11 @@ namespace DiscussionPlatform.Service
 
         public Mail GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Mails.Where(mail => mail.Id == id)
+                .Include(mail => mail.User)
+                .Include(mail => mail.Replies).ThenInclude(reply=>reply.User)
+                .Include(mail => mail.Platform)
+                .First();
         }
 
         public IEnumerable<Mail> GetFilteredMails(string searchQuery)
