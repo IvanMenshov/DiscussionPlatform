@@ -19,9 +19,10 @@ namespace DiscussionPlatform.Service
             _context = context;
         }
 
-        public Task Add(Mail mail)
+        public async Task Add(Mail mail)
         {
-            throw new NotImplementedException();
+            _context.Add(mail);
+            await _context.SaveChangesAsync();
         }
 
         public Task Delete(int id)

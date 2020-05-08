@@ -1,6 +1,12 @@
 ﻿@model DiscussionPlatform.Models.Platform.PlatformTopicModel
 
-<h1>Добро пожаловать на @Model.Platform.Name</h1>
+<h1>Добро пожаловать на @Model.Platform.Name !</h1>
+
+<span id="headingBtn">
+    <a asp-controller="Mail" asp-action="Create" asp-route-id=@Model.Platform.Id class="btn btn-newMail">
+        Создать
+    </a>
+</span>
 
 @if (Model.Mails.Any())
 {

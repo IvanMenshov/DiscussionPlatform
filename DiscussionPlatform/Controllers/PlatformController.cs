@@ -47,6 +47,7 @@ namespace DiscussionPlatform.Controllers
                 Id = mail.Id,
                 AuthorId = mail.User.Id,
                 AuthorRating = mail.User.Rating,
+                AuthorName = mail.User.UserName,
                 Title = mail.Title,
                 DateMailed = mail.DateOfCreation.ToString(),
                 RepliesCount = mail.Replies.Count(),
@@ -59,7 +60,7 @@ namespace DiscussionPlatform.Controllers
                 Platform = BuildPlatformListing(platform)
             };
 
-            return View();
+            return View(model);
         }
 
         private PlatformListingModel BuildPlatformListing(Mail mail)

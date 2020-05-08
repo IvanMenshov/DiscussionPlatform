@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using DiscussionPlatform.Data.Inerfaces;
 using DiscussionPlatform.Data.Models;
+using DiscussionPlatform.Models;
 using DiscussionPlatform.Models.Mail;
 using DiscussionPlatform.Models.Reply;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DiscussionPlatform.Controllers
@@ -13,10 +15,15 @@ namespace DiscussionPlatform.Controllers
     public class MailController : Controller
     {
         private readonly IMail _mailService;
+        private readonly IPlatform _platformService;
 
-        public MailController(IMail mailService)
+        private static UserManager<ApplicationUser> _userManager;
+
+        public MailController(IMail mailService, IPlatform platformService, UserManager<ApplicationUser> userManager)
         {
             _mailService = mailService;
+            _platformService = platformService;
+            _userManager = userManager;
         }
 
         public IActionResult Index(int id)
@@ -38,6 +45,47 @@ namespace DiscussionPlatform.Controllers
             };
 
             return View(model);
+        }
+
+        public IActionResult Create(int id)
+        {
+            var platform = _platformService.GetById(id);
+
+            var model = new NewMailModel
+            {
+                PlatformName = platform.Title,
+                PlatformId = platform.Id,
+                PlatformImageUrl = platform.ImageUrl,
+                AuthorName = User.Identity.Name
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddMail(NewMailModel model)
+        {
+            var userId = _userManager.GetUserId(User);
+            var user = _userManager.FindByIdAsync(userId).Result;
+            var mail = BuildMail(model, user);
+
+            await _mailService.Add(mail);
+
+            return RedirectToAction("Index", "Mail", new { id = mail.Id });
+        }
+
+        private Mail BuildMail(NewMailModel model, ApplicationUser user)
+        {
+            var platform = _platformService.GetById(model.PlatformId);
+
+            return new Mail
+            {
+                Title = model.Title,
+                Content = model.Content,
+                DateOfCreation = DateTime.Now,
+                User = user,
+                Platform = platform
+            };
         }
 
         private IEnumerable<MailReplyModel> BuildMailReplies(IEnumerable<MailReply> replies)
