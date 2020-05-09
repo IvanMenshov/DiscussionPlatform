@@ -37,7 +37,10 @@ namespace DiscussionPlatform.Service
 
         public IEnumerable<Mail> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Mails
+                .Include(mail => mail.User)
+                .Include(mail => mail.Replies).ThenInclude(reply => reply.User)
+                .Include(mail => mail.Platform);
         }
 
         public Mail GetById(int id)
@@ -52,6 +55,11 @@ namespace DiscussionPlatform.Service
         public IEnumerable<Mail> GetFilteredMails(string searchQuery)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<Mail> GetLatestMails(int n)
+        {
+            return GetAll().OrderByDescending(mail => mail.DateOfCreation).Take(n);
         }
 
         public IEnumerable<Mail> GetMailByPlatform(int id)

@@ -12,6 +12,7 @@ namespace DiscussionPlatform.Data.Inerfaces
         IEnumerable<Mail> GetAll();
         IEnumerable<Mail> GetFilteredMails(string searchQuery);
         IEnumerable<Mail> GetMailByPlatform(int id);
+        IEnumerable<Mail> GetLatestMails(int n);
 
         Task Add(Mail mail);
         Task Delete(int id);

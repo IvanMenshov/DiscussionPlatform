@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<DiscussionPlatform.Models.ApplicationUser> UserManager
+@inject SignInManager<DiscussionPlatform.Models.ApplicationUser> SignInManager
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -20,30 +25,55 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">DiscussionPlatform</a>
-            </div>
+                <a class="navbar-brand" navLogo asp-controller="Home" asp-action="Index"></a>
+            </div> 
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-controller="Platform" asp-action="Index">Форумы</a></li>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Настройки
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li role="separator" class="divider"></li>
+                                <li class="dropdown-header">Профиль</li>
+                                <li><a asp-controller="Profile" asp-action="Detail">Мой профиль</a></li>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <li role="separator" class="divider"></li>
+                                    <li class="dropdown-header">Админ</li>
+                                    <li><a asp-controller="Platform" asp-action="Create">Создать форум</a></li>
+                                    <li><a asp-controller="Profile" asp-action="Index">Посмотреть пользователей</a></li>
+                                }
+                            </ul>
+                        </li>
+                    }
                 </ul>
+                @if (!SignInManager.IsSignedIn(User))
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a asp-controller="Account" asp-action="Login">Войти</a></li>
+                        <li class="active"><a asp-controller="Account" asp-action="Register">Регистрация</a></li>
+                    </ul>
+                }
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>Привет, @UserManager.GetUserName(User)</li>
+                            <li><a asp-controller="Account" asp-action="Logout">Вsйти</a></li>
+                        </ul>
+                    </form>
+                }
                 @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
     </nav>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2020 - DiscussionPlatform</p>
-        </footer>
     </div>
 
     <environment include="Development">
