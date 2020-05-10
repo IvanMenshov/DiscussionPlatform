@@ -23,4 +23,8 @@
     <ProjectReference Include="..\DiscussionPlatform.Service\DiscussionPlatform.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\platform\" />
+  </ItemGroup>
+
 </Project>

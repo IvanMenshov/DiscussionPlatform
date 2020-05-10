@@ -20,12 +20,14 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" navLogo asp-controller="Home" asp-action="Index"></a>
+                <a class="navbar-brand navLogo" asp-controller="Home" asp-action="Index"></a>
             </div> 
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -64,11 +66,10 @@
                     <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar">
                         <ul class="nav navbar-nav navbar-right">
                             <li>Привет, @UserManager.GetUserName(User)</li>
-                            <li><a asp-controller="Account" asp-action="Logout">Вsйти</a></li>
+                            <li><a asp-controller="Account" asp-action="Logout">Выйти</a></li>
                         </ul>
                     </form>
                 }
-                @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
     </nav>

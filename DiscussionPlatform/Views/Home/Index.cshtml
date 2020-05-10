@@ -6,9 +6,7 @@
             <div class="frontPageHeading">
                 Общайтесь, учитесь, делитесь знаниями
             </div>
-            <p class="frontPageSubHeading">
-                Это быстрорастущая платформа
-            </p>
+            <p class="frontPageSubHeading">Это быстрорастущая платформа</p>
             <div>
                 <form asp-controller="Search" asp-action="Search" method="post">
                     <input asp-for="SearchQuery" type="text" class="homeSearch" placeholder="Поиск..." />
@@ -25,7 +23,7 @@
                 {
                     <tr>
                         <td>
-                            <div class="platformLogo" style="background-image: url(@mail.Platform.PlatformImageUrl); background-size=100%"></div>
+                            <div class="platformLogo" style="background-image: url(@mail.Platform.PlatformImageUrl);"></div>
                             <div class="mailTitle">
                                 <a asp-controller="Mail" asp-action="Index" asp-route-id="@mail.Id">
                                     @mail.Title
