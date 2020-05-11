@@ -52,9 +52,11 @@ namespace DiscussionPlatform.Service
                 .First();
         }
 
-        public IEnumerable<Mail> GetFilteredMails(string searchQuery)
+        public IEnumerable<Mail> GetFilteredMails(Platform platform, string searchQuery)
         {
-            throw new NotImplementedException();
+            return string.IsNullOrEmpty(searchQuery)
+                ? platform.Mails : platform.Mails.Where(mail => mail.Title.Contains(searchQuery)
+                || mail.Content.Contains(searchQuery));
         }
 
         public IEnumerable<Mail> GetLatestMails(int n)

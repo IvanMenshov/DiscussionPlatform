@@ -10,7 +10,7 @@ namespace DiscussionPlatform.Data.Inerfaces
     {
         Mail GetById(int id);
         IEnumerable<Mail> GetAll();
-        IEnumerable<Mail> GetFilteredMails(string searchQuery);
+        IEnumerable<Mail> GetFilteredMails(Platform platform, string searchQuery);
         IEnumerable<Mail> GetMailByPlatform(int id);
         IEnumerable<Mail> GetLatestMails(int n);
 
