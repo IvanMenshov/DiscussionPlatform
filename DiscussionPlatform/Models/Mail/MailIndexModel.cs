@@ -16,6 +16,10 @@ namespace DiscussionPlatform.Models.Mail
         public int AuthorRating { get; set; }
         public DateTime DateOfCreation { get; set; }
         public string MailContent { get; set; }
+        public bool IsAuthorAdmin { get; set; }
+
+        public int PlatformId { get; set; }
+        public string PlatformName { get; set; }
 
         public IEnumerable<MailReplyModel> Replies { get; set; }
     }

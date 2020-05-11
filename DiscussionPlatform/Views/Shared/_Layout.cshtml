@@ -28,27 +28,24 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand navLogo" asp-controller="Home" asp-action="Index"></a>
-            </div> 
-            <div class="navbar-collapse collapse">
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-controller="Platform" asp-action="Index">Форумы</a></li>
+                    <li class="active"><a asp-controller="Platform" asp-action="Index">Форумы</a></li>
                     @if (SignInManager.IsSignedIn(User))
                     {
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                Настройки
-                                <span class="caret"></span>
-                            </a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Настройки<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li role="separator" class="divider"></li>
-                                <li class="dropdown-header">Профиль</li>
-                                <li><a asp-controller="Profile" asp-action="Detail">Мой профиль</a></li>
+                                <li class="dropdown-header">Profile</li>
+                                <li><a asp-controller="Profile" asp-action="Detail" asp-route-id="@UserManager.GetUserId(User)">Мой профиль</a></li>
                                 @if (User.IsInRole("Admin"))
                                 {
                                     <li role="separator" class="divider"></li>
                                     <li class="dropdown-header">Админ</li>
-                                    <li><a asp-controller="Platform" asp-action="Create">Создать форум</a></li>
-                                    <li><a asp-controller="Profile" asp-action="Index">Посмотреть пользователей</a></li>
+                                    <li><a asp-controller="Forum" asp-action="Create">Создать</a></li>
+                                    <li><a asp-controller="Profile" asp-action="Index">Пользователи</a></li>
                                 }
                             </ul>
                         </li>
@@ -63,14 +60,18 @@
                 }
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar">
+                    <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
                         <ul class="nav navbar-nav navbar-right">
-                            <li>Привет, @UserManager.GetUserName(User)</li>
-                            <li><a asp-controller="Account" asp-action="Logout">Выйти</a></li>
+                            <li>
+                                <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Привет, @UserManager.GetUserName(User)!</a>
+                            </li>
+                            <li>
+                                <button type="submit" class="btn btn-link navbar-btn navbar-link">Выйти</button>
+                            </li>
                         </ul>
                     </form>
                 }
-            </div>
+            </div><!--/.nav-collapse -->
         </div>
     </nav>
     <div class="container body-content">

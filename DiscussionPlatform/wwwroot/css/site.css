@@ -1,14 +1,14 @@
 ﻿body {
-    padding: 90px 0 20px 0;
+    padding: 50px 0 20px 0;
     background-color: #eee;
-    background-image: url("/images/theme/bg-01.jpg");
+    background-image: url('/images/theme/bg-01.jpg');
     background-size: 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
 }
 
-.navbar{
+.navbar {
     box-shadow: 0 5px 4px -6px #000;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .sectionHeading {
-    color: white;
+    color: black;
     font-size: 1.3em;
     font-family: 'Roboto';
     padding: 16px 0 16px 0;
@@ -40,7 +40,7 @@
     margin-bottom: 12px;
 }
 
-.postHaeding {
+.mailHaeding {
     color: white;
     font-size: 1.1em;
     font-family: 'Roboto';
@@ -49,21 +49,13 @@
 
 .sectionInfo {
     height: 400px;
-    background-color: white;
-}
-
-.frontPageContent {
-    background-color: rgba(255,255,255,0.9);
-    padding: 16px;
+    background-color: black;
 }
 
 .frontPageSplash {
-    background-image: url("/images/theme/front.jpg");
+    background-image: url('/images/theme/front-splash.jpg');
     background-repeat: no-repeat;
-    background-position: right;
-    background-size: 100%;
-    padding-top: 90px;
-    padding-bottom: 60px;
+    background-position: center top;
 }
 
 .frontPageLearn {
@@ -73,7 +65,7 @@
 }
 
 .sectionDescription {
-    color: #eee;
+    color: #EEE;
 }
 
 .frontPageHeading {
@@ -102,16 +94,28 @@
     font-size: 2.1em;
     font-family: 'Roboto Mono';
     font-weight: bold;
-    
     transition: ease-in 0.2s;
 }
-.homeSearch:focus {
-    border: none !important;
-    outline: none !important;
-    transition: ease-in 0.2s;
-    color: #03A9F4;
-    background-color: rgba(0,0,0,0.7);
-    box-shadow: 0 5px 4px -6px #000;
+
+    .homeSearch:focus {
+        border: none !important;
+        outline: none !important;
+        transition: ease-in 0.2s;
+        color: #03A9F4;
+        background-color: rgba(0,0,0,0.7);
+        box-shadow: 0 5px 4px -6px #000;
+    }
+
+.fontPageContent {
+    background-color: rgba(255,255,255,0.9);
+    padding: 16px;
+}
+
+#latestsMails {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    margin: 4px 0 16px;
 }
 
 .searchBar {
@@ -123,42 +127,11 @@
     border: none;
 }
 
-.postTitle {
-    font-family: 'Roboto';
-    font-weight: bold;
-}
-
-.postSubTitle {
-    color: #888;
-    font-family: 'Roboto Mono';
-    font-size: 0.8em;
-}
-
-.postData {
-    display: inline-block;
-}
-
-.postDate {
-    color: #888;
-    font-family: 'Roboto Mono';
-    font-size: 0.8em;
-}
-
-.postLogo {
-    display: inline-block;
-    border-radius: 3px;
-    margin-right: 20px;
-    height: 40px;
-    width: 40px;
-    background-color: #ddd;
-}
-
-#latestsMails {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #333;
-    margin: 4px 0 16px;
-}
+    .searchBar:focus {
+        color: black;
+        width: 60%;
+        background-color: #fff;
+    }
 
 .mailTitle {
     font-family: 'Roboto';
@@ -171,7 +144,146 @@
     font-size: 0.8em;
 }
 
-#platformIndexTable td {
+.mailData {
+    display: inline-block;
+}
+
+.mailDate {
+    color: #888;
+    font-family: 'Roboto Mono';
+    font-size: 0.8em;
+}
+
+.mailLogo {
+    display: inline-block;
+    border-radius: 3px;
+    margin-right: 20px;
+    height: 40px;
+    width: 40px;
+    background-color: #ddd;
+}
+
+.mailAuthorImage {
+    height: 80px;
+    width: 80px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.mailAuthorContainer {
+    padding: 12px;
+    color: #444;
+    font-family: 'Roboto';
+    width: 190px;
+}
+
+.mailIndexTitle {
+    font-size: 1.4em;
+}
+
+#mailContentConteiner {
+    font-family: 'Roboto';
+    color: #222;
+    padding: 22px;
+    border-left: 1px solid #ddd;
+}
+
+.mailAuthorRating {
+    font-size: 0.9em;
+    color: #159;
+    font-family: 'Roboto Mono';
+}
+
+#mailIndexContent {
+    background-color: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2), 0 6px 6px rgba(0,0,0,0.3);
+}
+
+.mailHeader {
+    background-color: #212121;
+    padding: 8px 0px 24px 24px;
+}
+
+#replyDivider {
+    height: 2px;
+    margin-bottom: 12px;
+}
+
+#headingBtn {
+    float: right;
+    margin-right: 20px;
+}
+
+.btn-back {
+    background-color: #555;
+    color: #fff !important;
+    transition: ease-in 0.1s;
+    border-radius: 0px !important;
+}
+
+    .btn-back:hover {
+        transition: ease-in 0.1s;
+        background-color: #1E88E5 !important;
+    }
+
+.btn-newReply {
+    background-color: #5C6BC0 !important;
+    color: #fff !important;
+    transition: ease-in 0.1s;
+    border-radius: 0px !important;
+}
+
+    .btn-newReply:hover {
+        background-color: #9FA8DA !important;
+        transition: ease-in 0.1s;
+    }
+
+.btn-file {
+    color: white;
+    width: 100%;
+    background-color: #4FC3F7;
+    transition: ease-in 0.3s;
+}
+
+    .btn-file:hover {
+        background-color: #039BE5;
+        transition: ease-in 0.3s;
+    }
+
+.btn-newMail {
+    background-color: #c62828 !important;
+    color: #fff !important;
+    transition: ease-in 0.1s;
+    border-radius: 0px !important;
+}
+
+    .btn-newMail:hover {
+        transition: ease-in 0.1s;
+        background-color: #e53935 !important;
+        color: #fff !important;
+    }
+
+.btn-submitMail {
+    background-color: #00695C !important;
+    color: #fff !important;
+    transition: ease-in 0.1s;
+    border-radius: 0px !important;
+}
+
+    .btn-submitMail:hover {
+        transition: ease-in 0.1s;
+        background-color: #00897B !important;
+        color: #fff !important;
+    }
+
+.btn-platformSearch {
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    font: inherit;
+}
+
+#platfromIndexTable td {
     background-color: rgba(255,255,255,0.9);
 }
 
@@ -217,13 +329,13 @@
     font-size: 0.9em;
 }
 
-.forumMemberCount {
+.platformMemberCount {
     color: #888;
     font-family: 'Roboto Mono';
     font-size: 0.9em;
 }
 
-#forumIndexContent {
+#platformIndexContent {
     padding-bottom: 60px;
     background-color: white;
 }
@@ -232,6 +344,88 @@
     text-align: center;
     padding-top: 30px;
     font-family: 'Roboto Mono';
+}
+
+/*User Profiles*/
+.userProfile {
+    padding: 32px 0 64px 24px;
+    background-color: #fff;
+}
+
+#userProfileImage {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    background-color: #ddd;
+}
+
+#UserEmailLabel, #userBioLabel, #userCreatedLabel, #userRating, #userActiveLabel {
+    display: block;
+    color: #444;
+    font-family: 'Roboto';
+    padding-top: 3px;
+}
+
+#userName {
+    display: block;
+    color: #2569d5;
+    font-family: 'Roboto';
+    font-size: 1.7em;
+}
+
+.createMailSection {
+    background-color: #fff;
+    padding: 24px;
+}
+
+/*User Profile Index*/
+.userProfilePic {
+    height: 140px;
+    width: 140px;
+    background-size: 100%;
+}
+
+#userProfileImage {
+    background-size: 100%;
+}
+
+.fillSquare {
+    background-size: 100%;
+}
+
+/*Replies*/
+.replyContent {
+    display: table;
+    background-color: #fff;
+    border-bottom: 1px solid #aaa;
+    width: inherit;
+}
+
+#mailReplyRow {
+    background-color: #3F51B5;
+    padding: 8px;
+}
+
+.replyContentContainer {
+    display: table-cell;
+    padding: 12px;
+}
+
+.replyAuthorContainer {
+    display: table-cell;
+    padding: 12px;
+}
+
+.isAdmin {
+    display: inline-block;
+    padding: 3px;
+    background-color: #FFEB3B;
+    color: #000;
+    font-family: 'Roboto Mono';
+}
+
+.smaller {
+    font-size: 0.8em;
 }
 
 /* Wrapping element */

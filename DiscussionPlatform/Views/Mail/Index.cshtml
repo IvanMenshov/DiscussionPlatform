@@ -1,29 +1,81 @@
 ﻿@model DiscussionPlatform.Models.Mail.MailIndexModel
 
-<h1>@Model.Title</h1>
+<div class="container body-content">
+    <div class="row mailHeader">
+        <div class="mailHeading">
+            <span class="mailIndexTitle">
+                @Model.Title
+            </span>
+            <span id="headingBtn">
+                <a asp-controller="Platform" asp-action="Topic" asp-route-id="@Model.PlatformId" class="btn btn-back">Вернуться в @Model.PlatformName</a>
+            </span>
+        </div>
+    </div>
 
-<div>
-    Автор: @Model.AuthorName (@Model.AuthorRating)
-    Дата создания: @Model.DateOfCreation
-</div>
 
-<div>
-    @Model.MailContent
-</div>
-
-@if (Model.Replies.Any())
-{
-    foreach(var reply in Model.Replies)
-    {
-        <div>
-            <div>
-                Ответ автора: @reply.AuthorName
-                Ответ создан: @reply.DateOfCreation
-            </div>
-
-            <div>
-                Ответ: @reply.ReplyContent
+    <div class="row" id="mailIndexContent">
+        <div class="col-md-3 mailAuthorContainer">
+            <div class="mailAuthorImage" style="background-image: url(@Model.AuthorImageUrl);"></div>
+            <a asp-controller="Profile" asp-action="Detail" asp-route-id="@Model.AuthorId">
+                @Model.AuthorName
+            </a>
+            <span class="mailData">@Model.DateOfCreation</span>
+            @if (Model.IsAuthorAdmin)
+            {
+                <span class="isAdmin smaller">Админ</span>
+            }
+        </div>
+        <div class="col-md-9 mailContentContainer">
+            <div class="mailContent">
+                @Html.Raw(Model.MailContent)
             </div>
         </div>
+    </div>
+    <div class="row" id="replyDivider"></div>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="row">
+            <span>
+                <a asp-controller="Reply" asp-action="Create" asp-route-id="@Model.Id" class="btn btn-newReply">
+                    Ответить
+                </a>
+            </span>
+        </div>
     }
-}
+
+    @if (Model.Replies.Any())
+    {
+        foreach (var reply in Model.Replies)
+        {
+            <div class="row replyContent">
+                <div class="col-md-3 replyAuthorContent">
+                    <div class="mailAuthorImage" style="background-image: url(@reply.AuthorImageUrl)"></div>
+                    <a asp-controller="Profile" asp-action="Detail" asp-route-id="@reply.AuthorId">
+                        @reply.AuthorName
+                    </a>
+                    @if (reply.IsAuthorAdmin)
+                    {
+                        <div class="isAdmin smaller">Админ</div>
+                        <br />
+                    }
+                    <span>@reply.DateOfCreation</span>
+                </div>
+                <div class="col-md-9 replyContentContainer">
+                    <div class="mailContent">
+                        @Html.Raw(reply.ReplyContent)
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="noPosts">
+            <h3>
+                Нет ответов
+            </h3>
+        </div>
+    }
+</div>
+

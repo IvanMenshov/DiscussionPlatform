@@ -41,10 +41,18 @@ namespace DiscussionPlatform.Controllers
                 AuthorRating = mail.User.Rating,
                 DateOfCreation = mail.DateOfCreation,
                 MailContent = mail.Content,
-                Replies = replies
+                Replies = replies,
+                PlatformId=mail.Platform.Id,
+                PlatformName=mail.Platform.Title,
+                IsAuthorAdmin = IsAuthorAdmin(mail.User)
             };
 
             return View(model);
+        }
+
+        private bool IsAuthorAdmin(ApplicationUser user)
+        {
+            return _userManager.GetRolesAsync(user).Result.Contains("Admin");
         }
 
         public IActionResult Create(int id)
@@ -98,7 +106,8 @@ namespace DiscussionPlatform.Controllers
                 AuthorImageUrl = reply.User.ProfileImageUrl,
                 AuthorRating = reply.User.Rating,
                 DateOfCreation = reply.DateOfCreation,
-                ReplyContent = reply.Content
+                ReplyContent = reply.Content,
+                IsAuthorAdmin = IsAuthorAdmin(reply.User)
             });
         }
     }

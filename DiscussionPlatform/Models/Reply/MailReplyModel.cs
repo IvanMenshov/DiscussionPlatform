@@ -14,6 +14,7 @@ namespace DiscussionPlatform.Models.Reply
         public string AuthorImageUrl { get; set; }
         public DateTime DateOfCreation { get; set; }
         public string ReplyContent { get; set; }
+        public bool IsAuthorAdmin { get; set; }
 
         public int MailId { get; set; }
     }

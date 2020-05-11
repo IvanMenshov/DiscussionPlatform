@@ -10,5 +10,6 @@ namespace DiscussionPlatform.Models.Platform
     {
         public PlatformListingModel Platform { get; set; }
         public IEnumerable<MailListingModel> Mails { get; set; }
+        public string SearchQuery { get; set; }
     }
 }
