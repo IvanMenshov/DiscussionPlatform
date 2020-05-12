@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscussionPlatform.Data", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscussionPlatform.Service", "DiscussionPlatform.Service\DiscussionPlatform.Service.csproj", "{313394F7-C546-4ABE-B6A9-766338D257F5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{FA3B91CA-41BF-4085-B6E6-935CB78357BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{348B9451-D3E1-42CF-B586-F5295FCD4CBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +34,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BF0BD7DE-3A07-453D-B741-B41789009E4C} = {FA3B91CA-41BF-4085-B6E6-935CB78357BB}
+		{EAB928F3-22AC-4328-A5B1-575EDDB3ED0D} = {FA3B91CA-41BF-4085-B6E6-935CB78357BB}
+		{313394F7-C546-4ABE-B6A9-766338D257F5} = {FA3B91CA-41BF-4085-B6E6-935CB78357BB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3EF4A064-F83F-4AD5-ADB7-6937AC7B7396}
