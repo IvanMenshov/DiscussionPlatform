@@ -59,6 +59,12 @@ namespace DiscussionPlatform.Service
                 || mail.Content.Contains(searchQuery));
         }
 
+        public IEnumerable<Mail> GetFilteredMails(string searchQuery)
+        {
+            return GetAll().Where(mail => mail.Title.Contains(searchQuery)
+            || mail.Content.Contains(searchQuery));
+        }
+
         public IEnumerable<Mail> GetLatestMails(int n)
         {
             return GetAll().OrderByDescending(mail => mail.DateOfCreation).Take(n);

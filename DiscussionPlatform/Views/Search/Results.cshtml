@@ -1,0 +1,83 @@
+﻿@model DiscussionPlatform.Models.Search.SearchResultModel
+
+<div class="continer body-content">
+    <div class="row sectionHeader">
+        <div class="sectionHeading">
+            <span>Результат поиска для: @Model.SearchQuery</span>
+            <form asp-controller="Search" asp-action="Search" method="post">
+                <div class="searchForm">
+                    <input asp-for="SearchQuery" type="text" placeholder="Поиск..." class="searchBar" onfocus="clearThis(this)">
+                    <button type="submit" class="btn btn-platformSearch">
+                        <i class="material-icons">поиск</i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row platformIndexContent">
+        @if (!Model.EmptySearchResult)
+        {
+            <table class="table table-hover table-bordered" id="searchIndexTable">
+                <tbody>
+                    @foreach (var mail in Model.Mails)
+                    {
+                        <tr>
+                            <td>
+                                <div class="platformLogo" style="background-image: url(@mail.Platform.PlatformImageUrl)"></div>
+                                <div class="mailData">
+                                    <div class="mailTitle">
+                                        <a asp-controller="Mail" asp-action="Index" asp-route-id="@mail.Id">@mail.Title</a>
+                                    </div>
+                                    <div class="platformSubTitle">
+                                        <div>
+                                            <span class="mailAuthor">
+                                                <a asp-controller="Profile" asp-action="Detail" asp-route-id="@mail.AuthorId">
+                                                    @mail.AuthorName
+                                                </a>
+                                                (@mail.AuthorRating)
+                                            </span>
+                                            в:
+                                            <span class="mailPlatform">
+                                                <a asp-controller="Platform" asp-action="Topic" asp-route-id="@mail.Platform.Id">@mail.Platform.Name</a>
+                                            </span>
+                                            на:
+                                            <span class="mailDat">
+                                                @mail.DateMailed
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="platformPostCount">
+                                    Ответов: @mail.RepliesCount
+                                </div>
+                            </td>
+                            <td>
+                                <div class="mailDate">@mail.DateMailed</div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="noPosts">
+                <i class="material-icons md-72">question_answer</i>
+                <h3>
+                    Нет результатов поиска для @Model.SearchQuery <br />
+                </h3>
+            </div>
+        }
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        function clearThis(target) {
+            target.value = "";
+        }
+    </script>
+}
