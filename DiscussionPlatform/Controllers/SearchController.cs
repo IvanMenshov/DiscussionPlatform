@@ -20,7 +20,7 @@ namespace DiscussionPlatform.Controllers
             _mailService = mailService;
         }
 
-        public IActionResult Result(string searchQuery)
+        public IActionResult Results(string searchQuery)
         {
             var mails = _mailService.GetFilteredMails(searchQuery);
             var areNoResults = (!string.IsNullOrEmpty(searchQuery) && !mails.Any());
@@ -44,7 +44,7 @@ namespace DiscussionPlatform.Controllers
                 EmptySearchResult = areNoResults
             };
 
-            return View();
+            return View(model);
         }
 
         private PlatformListingModel BuildPltformListing(Mail mail)
