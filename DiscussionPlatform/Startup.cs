@@ -13,6 +13,7 @@ using DiscussionPlatform.Models;
 using DiscussionPlatform.Services;
 using DiscussionPlatform.Data.Inerfaces;
 using DiscussionPlatform.Service;
+using DiscussionPlatform.Data.Models;
 
 namespace DiscussionPlatform
 {
@@ -39,6 +40,8 @@ namespace DiscussionPlatform
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddScoped<IPlatform, PlatformService>();
             services.AddScoped<IMail, MailService>();
+            services.AddScoped<IUpload, UploadService>();
+            services.AddScoped<IApplicationUser, ApplicationUserService>();
 
             services.AddTransient<DataSeeder>();
 

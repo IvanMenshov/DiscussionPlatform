@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DiscussionPlatform.Data.Inerfaces;
+using DiscussionPlatform.Data.Models;
 using DiscussionPlatform.Models;
 using DiscussionPlatform.Models.ApplicationUser;
 using Microsoft.AspNetCore.Identity;

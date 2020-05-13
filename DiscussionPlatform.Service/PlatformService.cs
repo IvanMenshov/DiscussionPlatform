@@ -1,12 +1,10 @@
 ﻿using DiscussionPlatform.Data;
 using DiscussionPlatform.Data.Inerfaces;
 using DiscussionPlatform.Data.Models;
-using DiscussionPlatform.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DiscussionPlatform.Service

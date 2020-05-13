@@ -1,10 +1,11 @@
-﻿using System;
+﻿using DiscussionPlatform.Data.Inerfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace DiscussionPlatform.Service
 {
-    class UploadService
+    public class UploadService : IUpload
     {
     }
 }

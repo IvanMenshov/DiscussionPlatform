@@ -1,10 +1,9 @@
 ﻿using DiscussionPlatform.Data;
 using DiscussionPlatform.Data.Inerfaces;
-using DiscussionPlatform.Models;
+using DiscussionPlatform.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DiscussionPlatform.Service

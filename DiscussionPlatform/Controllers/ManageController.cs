@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using DiscussionPlatform.Models;
 using DiscussionPlatform.Models.ManageViewModels;
 using DiscussionPlatform.Services;
+using DiscussionPlatform.Data.Models;
 
 namespace DiscussionPlatform.Controllers
 {
