@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DiscussionPlatform.Data.Inerfaces;
 using DiscussionPlatform.Models;
+using DiscussionPlatform.Models.ApplicationUser;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,7 +26,21 @@ namespace DiscussionPlatform.Controllers
 
         public IActionResult Detail(string id)
         {
-            return View();
+            var user = _userService.GetById(id);
+            var userRoles = _userManager.GetRolesAsync(user).Result;
+
+            var model = new ProfileModel()
+            {
+                UserId = user.Id,
+                UserName = user.UserName,
+                UserRating = user.Rating.ToString(),
+                Email = user.Email,
+                ProfileImageUrl = user.ProfileImageUrl,
+                PartnerSince = user.PartnerSince,
+                IsAdmin = userRoles.Contains("Admin")
+            };
+
+            return View(model);
         }
     }
 }

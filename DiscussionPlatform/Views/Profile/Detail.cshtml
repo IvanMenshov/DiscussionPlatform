@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model DiscussionPlatform.Models.ApplicationUser.ProfileModel
+
+@inject UserManager<DiscussionPlatform.Models.ApplicationUser> UserManager
+
+<div class="container body-content">
+    <div class="sectionHeader">
+        <div class="sectionHeading">
+            Профиль
+        </div>
+    </div>
+    <div class="row userProfile">
+        <div class="col-md-4">
+            <div id="userProfileImage" style="background-image: url(@Model.ProfileImageUrl)"></div>
+            @if (User.Identity.Name == Model.UserName)
+            {
+                <form method="post" enctype="multipart/form-data" asp-controller="Profile" asp-action="UploadProfileImage">
+                    <div id="upload">
+                        <label class="btn btn-default btn-file">
+                            Просмотр <input type="file" name="file" style="display: none" />
+                        </label>
+                    </div>
+                    <button type="submit" id="btn-profile" class="btn btn-default">Подтвердить</button>
+                </form>
+            }
+        </div>
+    </div>
+    <div class="col-md-8">
+        <span id="userName">@Model.UserName</span>
+        @if (Model.IsAdmin)
+        {
+            <span class="isAdmin">Админ</span>
+        }
+        <span id="userRating">Текущий рейтинг: @Model.UserRating</span>
+        <span id="UserEmailLabel">Email: @Model.Email</span>
+        <span id="userCreatedLabel">С: @Model.PartnerSince</span>
+    </div>
+</div>
