@@ -3,11 +3,11 @@
 <div class="continer body-content">
     <div class="row sectionHeader">
         <div class="sectionHeading">
-            <span>@Model.Platform.Name форум</span>
+            <span>@Model.Platform.Name Forum</span>
             @if (Context.User.Identity.IsAuthenticated)
             {
                 <span id="headingBtn">
-                    <a asp-controller="Post" asp-action="Create" asp-route-id="@Model.Platform.Id" class="btn btn-newPost">
+                    <a asp-controller="Post" asp-action="Create" asp-route-id="@Model.Platform.Id" class="btn btn-newMail">
                         Создать
                     </a>
                 </span>
@@ -15,8 +15,8 @@
             <form asp-controller="Platform" asp-action="Search" method="post">
                 <div class="searchForm">
                     <input asp-for="SearchQuery" type="text" placeholder="Поиск..." class="searchBar" onfocus="clearThis(this)">
-                    <button type="submit" class="btn btn-platformSearch">
-                        <i class="material-icons">поиск</i>
+                    <button type="submit" class="btn btn-forumSearch">
+                        <i class="material-icons">search</i>
                     </button>
                 </div>
                 <input asp-for="Platform.Id" name="id" type="hidden" />
@@ -24,7 +24,7 @@
         </div>
         <div class="sectionDescription">
             <div class="platformLogo" style="background-image: url(@Model.Platform.PlatformImageUrl)"></div>
-            <p>Добро пожаловать на @Model.Platform.Name.</p>
+            <p>Добро пожаловать @Model.Platform.Name </p>
             @if (!User.Identity.IsAuthenticated)
             {
                 <p>
@@ -33,16 +33,16 @@
                         <a asp-controller="Account" asp-action="Register">
                             зарегистрированным пользователем,
                         </a>
-                        что бы создать пост.
+                        чтобы создать новый пост
                     </span>
                 </p>
             }
         </div>
     </div>
-    <div class="row platformIndexContent">
+    <div class="row forumIndexContent">
         @if (Model.Mails.Any())
         {
-            <table class="table table-hover table-bordered" id="platfromIndexTable">
+            <table class="table table-hover table-bordered" id="forumIndexTable">
                 <tbody>
                     @foreach (var mail in Model.Mails)
                     {
@@ -52,7 +52,7 @@
                                     <div class="mailTitle">
                                         <a asp-controller="Mail" asp-action="Index" asp-route-id="@mail.Id">@mail.Title</a>
                                     </div>
-                                    <div class="platformSubTitle">
+                                    <div class="platfromSubTitle">
                                         <div>
                                             <span class="mailAuthor">
                                                 <a asp-controller="Profile" asp-action="Detail" asp-route-id="@mail.AuthorId">
@@ -65,12 +65,12 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="platformPostCount">
-                                    Ответов: @mail.RepliesCount
+                                <div class="platformMailCount">
+                                    Replies: @mail
                                 </div>
                             </td>
                             <td>
-                                <div class="mailDate">@mail.DateMailed</div>
+                                <div class="postDate">@mail.DateMailed</div>
                             </td>
                         </tr>
                     }
@@ -83,7 +83,8 @@
                 <i class="material-icons md-72">question_answer</i>
                 <h3>
                     Нет постов
-                    <a asp-controller="Post" asp-action="Create" asp-route-id="@Model.Platform.Id"></a>
+                    <a asp-controller="Mail" asp-action="Create" asp-route-id="@Model.Platform.Id">
+                    </a>
                 </h3>
             </div>
         }

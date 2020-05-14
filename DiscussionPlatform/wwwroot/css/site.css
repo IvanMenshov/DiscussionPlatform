@@ -54,7 +54,8 @@
 }
 
 .frontPageSplash {
-    background-image: url('/images/theme/front-splash.jpg');
+    background-image: url('/images/theme/front.jpg');
+    background-size: 100%;
     background-repeat: no-repeat;
     background-position: center top;
 }
