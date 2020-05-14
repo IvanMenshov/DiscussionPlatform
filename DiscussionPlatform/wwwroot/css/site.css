@@ -1,7 +1,7 @@
 ﻿body {
     padding: 50px 0 20px 0;
     background-color: #eee;
-    background-image: url('/images/theme/bg-01.jpg');
+    background-image: url('../images/theme/bg-01.jpg');
     background-size: 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -54,7 +54,7 @@
 }
 
 .frontPageSplash {
-    background-image: url('/images/theme/front.jpg');
+    background-image: url('/images/theme/front-splash.jpg');
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center top;
