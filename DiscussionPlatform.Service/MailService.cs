@@ -25,6 +25,12 @@ namespace DiscussionPlatform.Service
             await _context.SaveChangesAsync();
         }
 
+        public async Task AddReply(MailReply reply)
+        {
+            _context.MailReplies.Add(reply);
+            await _context.SaveChangesAsync();
+        }
+
         public Task Delete(int id)
         {
             throw new NotImplementedException();

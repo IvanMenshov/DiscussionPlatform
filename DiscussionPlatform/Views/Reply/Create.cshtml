@@ -1,0 +1,46 @@
+﻿@model DiscussionPlatform.Models.Reply.MailReplyModel
+
+<div class="container body-content">
+    <div class="row sectionHeader">
+        <div class="sectionHeading">
+            Ответить | @Model.MailTitle
+        </div>
+        <div class="platformLogo" style="background-image: url(@Model.PlatformImageUrl)"></div>
+        <span id="headingBtn">
+            <a asp-controller="Mail" asp-action="Index" asp-route-id="@Model.MailId" class="btn btn-back">
+                Вернуться к посту
+
+            </a>
+        </span>
+    </div>
+    <div class="row">
+        <div id="mailReply">
+            <h3>
+                @Model.MailTitle
+            </h3>
+            <p>
+                @Model.MailContent
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div id="createReply">
+            <div class="authorBlock">
+                Вы отправляете этот ответ как @Model.AuthorName
+            </div>
+
+            <form asp-action="AddReply" method="post" id="addMailForm">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="ReplyContent">Ответить: </label>
+                    <textarea asp-for="ReplyContent" rows="20" class="form-control" placeholder="Ваш ответ..."></textarea>
+                    <span asp-validation-for="ReplyContent" class="text-danger"></span>
+                </div>
+                <button type="submit" id="submitReplyBtn" class="btn btn-submitMail">Отправить ответ</button>
+                <input asp-for="AuthorId" type="hidden" />
+                <input asp-for="MailId" type="hidden" />
+                <input asp-for="PlatformId" type="hidden" />
+            </form>
+        </div>
+    </div>
+</div>

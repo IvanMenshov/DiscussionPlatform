@@ -54,28 +54,28 @@ namespace DiscussionPlatform.Controllers
         {
             var userId = _userManager.GetUserId(User);
 
-            //Connection to Azure Storage
+            //Подключение к хранилищу Azure
             var connectionString = _configuration.GetConnectionString("AzureStorageAccount");
 
-            //Get Blob Container
+            //Получить контейнер BLOB-объектов
             var container = _uploadService.GetBlobContainer(connectionString);
 
-            //Parse the Content Disposition response Header
+            //Разобрать заголовок ответа Расположение содержимого
             var contentDisposition = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
 
-            //Grab the filename
+            //Получить имя файла
             var filename = contentDisposition.FileName.Trim('"');
 
-            //Get reference to a Block Blob
+            //Получить ссылку на блок Blob
             var blockBlob = container.GetBlockBlobReference(filename);
 
-            //On that block blob Upload our file
+            //На этот блок BLOB Загрузить свой файл
             await blockBlob.UploadFromStreamAsync(file.OpenReadStream());
 
-            //Set the User profile image to the URI
+            //Установите изображение профиля пользователя в URI
             await _userService.SetProfileImage(userId, blockBlob.Uri);
 
-            //Redirect to the user profile page
+            //Перенаправить на страницу профиля пользователя
             return RedirectToAction("Detail", "Profile", new { id = userId });
         }
     }

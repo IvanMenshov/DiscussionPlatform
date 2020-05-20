@@ -18,5 +18,7 @@ namespace DiscussionPlatform.Data.Inerfaces
         Task Add(Mail mail);
         Task Delete(int id);
         Task EditMailContent(int id, string newContent);
+
+        Task AddReply(MailReply reply);
     }
 }

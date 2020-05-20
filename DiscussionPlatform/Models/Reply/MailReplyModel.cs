@@ -12,10 +12,17 @@ namespace DiscussionPlatform.Models.Reply
         public string AuthorName { get; set; }
         public int AuthorRating { get; set; }
         public string AuthorImageUrl { get; set; }
-        public DateTime DateOfCreation { get; set; }
-        public string ReplyContent { get; set; }
         public bool IsAuthorAdmin { get; set; }
 
+        public DateTime DateOfCreation { get; set; }
+        public string ReplyContent { get; set; }
+
         public int MailId { get; set; }
+        public string MailTitle { get; set; }
+        public string MailContent { get; set; }
+
+        public string PlatformName { get; set; }
+        public string PlatformImageUrl { get; set; }
+        public int PlatformId { get; set; }
     }
 }
