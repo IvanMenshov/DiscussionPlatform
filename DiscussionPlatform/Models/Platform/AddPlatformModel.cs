@@ -13,4 +13,5 @@ namespace DiscussionPlatform.Models.Platform
         public string ImageUrl { get; set; }
 
         public IFormFile ImageUpload { get; set; }
+    }
 }
