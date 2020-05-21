@@ -18,14 +18,19 @@ namespace DiscussionPlatform.Service
             _context = context;
         }
 
-        public Task Create(Platform platform)
+        public async Task Create(Platform platform)
         {
-            throw new NotImplementedException();
+            _context.Add(platform);
+
+            await _context.SaveChangesAsync();
         }
 
-        public Task Delete(int platformId)
+        public async Task Delete(int platformId)
         {
-            throw new NotImplementedException();
+            var platform = GetById(platformId);
+            _context.Remove(platform);
+
+            await _context.SaveChangesAsync();
         }
 
         public IEnumerable<Platform> GetAll()
