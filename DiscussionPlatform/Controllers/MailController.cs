@@ -16,14 +16,16 @@ namespace DiscussionPlatform.Controllers
     {
         private readonly IMail _mailService;
         private readonly IPlatform _platformService;
+        private readonly IApplicationUser _userService;
 
         private static UserManager<ApplicationUser> _userManager;
 
-        public MailController(IMail mailService, IPlatform platformService, UserManager<ApplicationUser> userManager)
+        public MailController(IMail mailService, IPlatform platformService, UserManager<ApplicationUser> userManager, IApplicationUser userService)
         {
             _mailService = mailService;
             _platformService = platformService;
             _userManager = userManager;
+            _userService = userService;
         }
 
         public IActionResult Index(int id)
@@ -78,6 +80,7 @@ namespace DiscussionPlatform.Controllers
             var mail = BuildMail(model, user);
 
             await _mailService.Add(mail);
+            await _userService.UpdateUserRating(userId, typeof(Mail));
 
             return RedirectToAction("Index", "Mail", new { id = mail.Id });
         }

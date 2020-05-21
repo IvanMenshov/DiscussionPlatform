@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using DiscussionPlatform.Data.Inerfaces;
 using DiscussionPlatform.Data.Models;
 using DiscussionPlatform.Models.Mail;
 using DiscussionPlatform.Models.Platform;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace DiscussionPlatform.Controllers
 {
@@ -14,11 +18,15 @@ namespace DiscussionPlatform.Controllers
     {
         private readonly IPlatform _platformService;
         private readonly IMail _mailService;
+        private readonly IUpload _uploadService;
+        private readonly IConfiguration _configuration;
 
-        public PlatformController(IPlatform platformService, IMail mailService)
+        public PlatformController(IPlatform platformService, IMail mailService, IUpload uploadService, IConfiguration configuration)
         {
             _platformService = platformService;
             _mailService = mailService;
+            _uploadService = uploadService;
+            _configuration = configuration;
         }
 
         public IActionResult Index()
@@ -65,12 +73,59 @@ namespace DiscussionPlatform.Controllers
             };
 
             return View(model);
-        } 
+        }
 
         [HttpPost]
         public IActionResult Search(int id, string searchQuery)
         {
             return RedirectToAction("Topic", new { id, searchQuery });
+        }
+
+        public IActionResult Create()
+        {
+            var model = new AddPlatformModel();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddPlatform(AddPlatformModel model)
+        {
+            var imageUri = "images/users/default.png";
+
+            if(model.ImageUpload != null)
+            {
+                var blockBlob = UploadPlatformImage(model.ImageUpload);
+                imageUri = blockBlob.Uri.AbsoluteUri;
+            }
+
+            var platform = new Platform
+            {
+                Title = model.Title,
+                Description = model.Description,
+                DateOfCreation = DateTime.Now,
+                ImageUrl = imageUri
+            };
+
+            await _platformService.Create(platform);
+            return RedirectToAction("Index", "Platform");
+        }
+
+        private CloudBlockBlob UploadPlatformImage(IFormFile file)
+        {
+            var connectionString = _configuration.GetConnectionString("AzureStorageAccount");
+
+            var container = _uploadService.GetBlobContainer(connectionString);
+
+            var contentDisposition = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
+
+            var filename = contentDisposition.FileName.Trim('"');
+
+            var blockBlob = container.GetBlockBlobReference(filename);
+
+            blockBlob.UploadFromStreamAsync(file.OpenReadStream());
+
+            return blockBlob;
         }
 
         private PlatformListingModel BuildPlatformListing(Mail mail)

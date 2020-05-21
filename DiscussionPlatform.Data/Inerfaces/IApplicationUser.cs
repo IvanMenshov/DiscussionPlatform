@@ -11,6 +11,6 @@ namespace DiscussionPlatform.Data.Inerfaces
         IEnumerable<ApplicationUser> GetAll();
 
         Task SetProfileImage(string id, Uri uri);
-        Task IncementRating(string id, Type type);
+        Task UpdateUserRating(string id, Type type);
     }
 }

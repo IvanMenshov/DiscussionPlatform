@@ -14,11 +14,13 @@ namespace DiscussionPlatform.Controllers
     {
         private readonly IMail _mailService;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IApplicationUser _userService;
 
-        public ReplyController(IMail mailService, UserManager<ApplicationUser> userManager)
+        public ReplyController(IMail mailService, UserManager<ApplicationUser> userManager, IApplicationUser userService)
         {
             _mailService = mailService;
             _userManager = userManager;
+            _userService = userService;
         }
 
         public async Task<IActionResult> Create(int id)
@@ -57,6 +59,7 @@ namespace DiscussionPlatform.Controllers
             var reply = BuildReply(model, user);
 
             await _mailService.AddReply(reply);
+            await _userService.UpdateUserRating(userId, typeof(MailReply));
 
             return RedirectToAction("Index", "Mail", new { id = model.MailId });
         }
