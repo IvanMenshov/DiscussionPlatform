@@ -7,6 +7,7 @@ using DiscussionPlatform.Data.Inerfaces;
 using DiscussionPlatform.Data.Models;
 using DiscussionPlatform.Models;
 using DiscussionPlatform.Models.ApplicationUser;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace DiscussionPlatform.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -79,6 +81,7 @@ namespace DiscussionPlatform.Controllers
             return RedirectToAction("Detail", "Profile", new { id = userId });
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             var profiles = _userService.GetAll()

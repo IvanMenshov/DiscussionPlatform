@@ -7,6 +7,7 @@ using DiscussionPlatform.Data.Inerfaces;
 using DiscussionPlatform.Data.Models;
 using DiscussionPlatform.Models.Mail;
 using DiscussionPlatform.Models.Platform;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -85,6 +86,7 @@ namespace DiscussionPlatform.Controllers
             return RedirectToAction("Topic", new { id, searchQuery });
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             var model = new AddPlatformModel();
@@ -93,6 +95,7 @@ namespace DiscussionPlatform.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddPlatform(AddPlatformModel model)
         {
             var imageUri = "images/users/default.png";

@@ -47,6 +47,12 @@ namespace DiscussionPlatform.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public IActionResult Search(string searchQuery)
+        {
+            return RedirectToAction("Results", new { searchQuery });
+        }
+
         private PlatformListingModel BuildPltformListing(Mail mail)
         {
             var platform = mail.Platform;
@@ -58,12 +64,6 @@ namespace DiscussionPlatform.Controllers
                 Name = platform.Title,
                 Description = platform.Description
             };
-        }
-
-        [HttpPost]
-        public IActionResult Search(string searchQuery)
-        {
-            return RedirectToAction("Results", new { searchQuery });
         }
     }
 }

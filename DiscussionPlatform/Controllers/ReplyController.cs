@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using DiscussionPlatform.Data.Inerfaces;
 using DiscussionPlatform.Data.Models;
 using DiscussionPlatform.Models.Reply;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DiscussionPlatform.Controllers
 {
+    [Authorize]
     public class ReplyController : Controller
     {
         private readonly IMail _mailService;

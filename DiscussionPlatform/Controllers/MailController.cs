@@ -7,6 +7,7 @@ using DiscussionPlatform.Data.Models;
 using DiscussionPlatform.Models;
 using DiscussionPlatform.Models.Mail;
 using DiscussionPlatform.Models.Reply;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -57,6 +58,7 @@ namespace DiscussionPlatform.Controllers
             return _userManager.GetRolesAsync(user).Result.Contains("Admin");
         }
 
+        [Authorize]
         public IActionResult Create(int id)
         {
             var platform = _platformService.GetById(id);
@@ -73,6 +75,7 @@ namespace DiscussionPlatform.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> AddMail(NewMailModel model)
         {
             var userId = _userManager.GetUserId(User);
