@@ -52,10 +52,10 @@ namespace DiscussionPlatform.Service
         public Mail GetById(int id)
         {
             return _context.Mails.Where(mail => mail.Id == id)
+                .Include(mail => mail.Platform)
                 .Include(mail => mail.User)
                 .Include(mail => mail.Replies).ThenInclude(reply=>reply.User)
-                .Include(mail => mail.Platform)
-                .First();
+                .FirstOrDefault();
         }
 
         public IEnumerable<Mail> GetFilteredMails(Platform platform, string searchQuery)

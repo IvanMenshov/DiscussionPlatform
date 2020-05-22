@@ -14,15 +14,17 @@ namespace DiscussionPlatform.Controllers
     [Authorize]
     public class ReplyController : Controller
     {
+        private readonly IPlatform _platformService;
         private readonly IMail _mailService;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IApplicationUser _userService;
 
-        public ReplyController(IMail mailService, UserManager<ApplicationUser> userManager, IApplicationUser userService)
+        public ReplyController(IMail mailService, UserManager<ApplicationUser> userManager, IApplicationUser userService, IPlatform platformService)
         {
             _mailService = mailService;
             _userManager = userManager;
             _userService = userService;
+            _platformService = platformService;
         }
 
         public async Task<IActionResult> Create(int id)
