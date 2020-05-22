@@ -115,7 +115,7 @@ namespace DiscussionPlatform.Controllers
         {
             var connectionString = _configuration.GetConnectionString("AzureStorageAccount");
 
-            var container = _uploadService.GetBlobContainer(connectionString);
+            var container = _uploadService.GetBlobContainer(connectionString, "platform-images");
 
             var contentDisposition = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
 
@@ -123,7 +123,7 @@ namespace DiscussionPlatform.Controllers
 
             var blockBlob = container.GetBlockBlobReference(filename);
 
-            blockBlob.UploadFromStreamAsync(file.OpenReadStream());
+            blockBlob.UploadFromStreamAsync(file.OpenReadStream()).Wait();
 
             return blockBlob;
         }

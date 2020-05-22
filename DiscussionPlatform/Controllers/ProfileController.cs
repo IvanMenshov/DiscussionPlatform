@@ -58,7 +58,7 @@ namespace DiscussionPlatform.Controllers
             var connectionString = _configuration.GetConnectionString("AzureStorageAccount");
 
             //Получить контейнер BLOB-объектов
-            var container = _uploadService.GetBlobContainer(connectionString);
+            var container = _uploadService.GetBlobContainer(connectionString, "profile-images");
 
             //Разобрать заголовок ответа Расположение содержимого
             var contentDisposition = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
