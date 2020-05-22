@@ -1,21 +1,56 @@
 ﻿@model DiscussionPlatform.Models.Platform.PlatformIndexModel
 
-<h3>Форумы</h3>
+<div class="container body-content">
+    <div class="row sectionHeader">
+        <div class="sectionHeading">Просмотр форумов</div>
+        <div class="sectionDescription">
+            <p>Добро можаловать на<strong>Discussion Platform</strong>.Сообщения широко разбиты на отдельные форумы.</p>
+            <p>
+                Пожалуйста, прочитайте Правила форума, прежде чем создавать новый пост.
+                @if (Context.User.Identity.IsAuthenticated)
+                {
+                    <span>Вы должны быть <a asp-controller="Account" asp-action="Register">зарегистрированным пользователем,</a> чтобы создать пост.</span>
+                }
+            </p>
+        </div>
+    </div>
+    <div class="row" id="platformIndexContent">
+        <table class="table table-hover" id="platformIndexTable">
+            <tbody>
+                @foreach (var platform in Model.PlatformList)
+                {
+                    <tr>
+                        <td>
+                            <div class="platformLogo" style="background-image: url(@platform.PlatformImageUrl); background-size:100%"></div>
+                            <div class="platformData">
+                                <div class="platformTitle">
+                                    <a asp-controller="Platform" asp-action="Topic" asp-route-id="@platform.Id">@platform.Name</a>
+                                </div>
+                                <div class="platformSubTitle">
+                                    @if (platform.HasReсentMail)
+                                    {
+                                        <div class="hasRecentPost">Горячий</div>
+                                    }
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="platformPostCount">
+                                @platform.NumberOfMails Посты
+                            </div>
+                            <div class="platformMemberCount">
+                                @platform.NumberOfUsers Пользователей
+                            </div>
+                        </td>
+                        <td>
+                            <div class="platformDescription">
+                                @platform.Description
+                            </div>
+                        </td>
+                    </tr>
+                }
 
-<table class="table table-hover" id="platformIndexTable">
-    <tbody>
-        @foreach(var platform in Model.PlatformList)
-        {
-            <tr>
-                <td>
-                    <a asp-controller="Platform" asp-action="Topic" asp-route-id="@platform.Id">
-                        @platform.Name
-                    </a>
-                </td>
-                <td>
-                    @platform.Description
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+            </tbody>
+        </table>
+    </div>
+</div>

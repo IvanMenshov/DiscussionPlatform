@@ -8,11 +8,13 @@ namespace DiscussionPlatform.Data.Inerfaces
     {
         Platform GetById(int id);
         IEnumerable<Platform> GetAll();
-        IEnumerable<ApplicationUser> GetAllActiveUsers();
 
         Task Create(Platform platform);
         Task Delete(int platformId);
         Task UpdatePlatformTitle(int platformId, string newTitle);
         Task UpdatePlatformDescription(int platformId, string newDescription);
+
+        IEnumerable<ApplicationUser> GetActiveUsers(int id);
+        bool HasRecentMail(int id);
     }
 }

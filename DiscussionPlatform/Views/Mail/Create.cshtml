@@ -1,18 +1,46 @@
 ﻿@model DiscussionPlatform.Models.Mail.NewMailModel
 
-<h1>New Mail | @Model.PlatformName</h1>
-
-<form asp-action="AddMail" method="post" id="addMailForm">
-    <div class="form-group">
-        <label asp-for="Title"></label>
-        <input asp-for="Title" class="form-control" />
+<div class="container body-content">
+    <div class="row sectionHeader">
+        <div class="sectionHeading noBorder">
+            Новый пост | @Model.PlatformName
+            <div class="platformLogo" style="background-image: url(@Model.PlatformImageUrl); background-size:100%"></div>
+            <span id="headingBtn"><a asp-controller="Platform" asp-action="Topic" asp-route-id="@Model.PlatformId" class="btn btn-back">Вернуться к @Model.PlatformName</a></span>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="Content"></label>
-        <textarea asp-for="Content" class="form-control"></textarea>
-    </div>
-    <button type="submit" id="submitMailBtn" class="btn btn-submitMail">
-        Разместить
-    </button>
-    <input asp-for="PlatformId" type="hidden" />
-</form>
+    @if (!Context.User.Identity.IsAuthenticated)
+    {
+        <div class="row">
+            <div id="platformIndexContent">
+                <div class="register">Вы должны быть <a asp-controller="Account" asp-action="Register">зарегистрированным,</a> чтобы создать новый пост</div>
+            </div>
+        </div>
+    }
+    @if (Context.User.Identity.IsAuthenticated)
+    {
+        <div class="row">
+            <div class="createMailSection">
+                <div class="authorBlock">
+                    Вы отправляете это сообщение как <span class="authorBlockName">@Model.AuthorName</span>
+                </div>
+                <form asp-action="AddMail" method="post" id="addMailForm">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Title">Заголовок</label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Content">Контент</label>
+                        <textarea asp-for="Content" rows="20" class="form-control" placeholder="Пишите свой пост здесь"></textarea>
+                        <span asp-validation-for="Content" class="text-danger"></span>
+                    </div>
+                    <button type="submit" id="registerBtn" class="btn btn-submitMail">Отправить сообщение</button>
+                    <input asp-for="UserId" type="hidden" />
+                    <input asp-for="PlatformName" type="hidden" />
+                    <input asp-for="PlatformId" type="hidden" />
+                </form>
+            </div>
+        </div>
+    }
+</div>

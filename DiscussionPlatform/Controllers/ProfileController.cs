@@ -78,5 +78,26 @@ namespace DiscussionPlatform.Controllers
             //Перенаправить на страницу профиля пользователя
             return RedirectToAction("Detail", "Profile", new { id = userId });
         }
+
+        public IActionResult Index()
+        {
+            var profiles = _userService.GetAll()
+                .OrderByDescending(user => user.Rating)
+                .Select(u => new ProfileModel
+                {
+                    Email = u.Email,
+                    UserName = u.UserName,
+                    ProfileImageUrl = u.ProfileImageUrl,
+                    UserRating = u.Rating.ToString(),
+                    PartnerSince = u.PartnerSince
+                });
+
+            var model = new ProfileListModel
+            {
+                Profiles = profiles
+            };
+
+            return View(model);
+        }
     }
 }

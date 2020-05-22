@@ -36,12 +36,16 @@ namespace DiscussionPlatform.Controllers
                  {
                      Id = platform.Id,
                      Name = platform.Title,
-                     Description = platform.Description
+                     Description = platform.Description,
+                     NumberOfMails = platform.Mails?.Count() ?? 0,
+                     NumberOfUsers = _platformService.GetActiveUsers(platform.Id).Count(),
+                     PlatformImageUrl = platform.ImageUrl,
+                     HasReсentMail = _platformService.HasRecentMail(platform.Id)
                  });
 
             var model = new PlatformIndexModel
             {
-                PlatformList = platforms
+                PlatformList = platforms.OrderBy(p=>p.Name)
             };
 
             return View(model);

@@ -430,6 +430,15 @@
     font-size: 0.8em;
 }
 
+.hasRecentMail{
+    padding: 2px;
+    background-color: #fe552f;
+    color: #fff;
+    text-align: center;
+    border-radius: 1px;
+    width: 30px;
+}
+
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {

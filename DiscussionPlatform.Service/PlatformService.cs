@@ -33,14 +33,24 @@ namespace DiscussionPlatform.Service
             await _context.SaveChangesAsync();
         }
 
+        public IEnumerable<ApplicationUser> GetActiveUsers(int id)
+        {
+            var mails = GetById(id).Mails;
+
+            if(mails != null || !mails.Any())
+            {
+                var mailUsers = mails.Select(m => m.User);
+                var replyUsers = mails.SelectMany(m => m.Replies).Select(r => r.User);
+
+                return mailUsers.Union(replyUsers).Distinct();
+            }
+
+            return new List<ApplicationUser>();
+        }
+
         public IEnumerable<Platform> GetAll()
         {
             return _context.Platforms.Include(platform => platform.Mails);
-        }
-
-        public IEnumerable<ApplicationUser> GetAllActiveUsers()
-        {
-            throw new NotImplementedException();
         }
 
         public Platform GetById(int id)
@@ -51,6 +61,14 @@ namespace DiscussionPlatform.Service
                 .FirstOrDefault();
 
             return platform;
+        }
+
+        public bool HasRecentMail(int id)
+        {
+            const int hoursAgo = 12;
+            var window = DateTime.Now.AddHours(-hoursAgo);
+
+            return GetById(id).Mails.Any(mail => mail.DateOfCreation > window);
         }
 
         public Task UpdatePlatformDescription(int platformId, string newDescription)

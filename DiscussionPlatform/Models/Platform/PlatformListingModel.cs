@@ -11,5 +11,9 @@ namespace DiscussionPlatform.Models.Platform
         public string Name { get; set; }
         public string Description { get; set; }
         public string PlatformImageUrl { get; set; }
+
+        public int NumberOfMails { get; set; }
+        public int NumberOfUsers { get; set; }
+        public bool HasReсentMail { get; set; }
     }
 }

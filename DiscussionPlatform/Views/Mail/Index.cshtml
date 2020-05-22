@@ -19,7 +19,7 @@
             <a asp-controller="Profile" asp-action="Detail" asp-route-id="@Model.AuthorId">
                 @Model.AuthorName
             </a>
-            <span class="mailData">@Model.DateOfCreation</span>
+            <span class="mailDate">@Model.DateOfCreation</span>
             @if (Model.IsAuthorAdmin)
             {
                 <span class="isAdmin smaller">Админ</span>
@@ -35,7 +35,7 @@
 
     @if (User.Identity.IsAuthenticated)
     {
-        <div class="row">
+        <div class="row" id="mailReplyRow">
             <span>
                 <a asp-controller="Reply" asp-action="Create" asp-route-id="@Model.Id" class="btn btn-newReply">
                     Ответить
@@ -59,7 +59,7 @@
                         <div class="isAdmin smaller">Админ</div>
                         <br />
                     }
-                    <span>@reply.DateOfCreation</span>
+                    <span class="mailDate">@reply.DateOfCreation</span>
                 </div>
                 <div class="col-md-9 replyContentContainer">
                     <div class="mailContent">
