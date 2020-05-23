@@ -67,8 +67,10 @@ namespace DiscussionPlatform.Service
 
         public IEnumerable<Mail> GetFilteredMails(string searchQuery)
         {
-            return GetAll().Where(mail => mail.Title.Contains(searchQuery)
-            || mail.Content.Contains(searchQuery));
+            var normalized = searchQuery.ToLower();
+
+            return GetAll().Where(mail => mail.Title.ToLower().Contains(normalized)
+            || mail.Content.ToLower().Contains(normalized));
         }
 
         public IEnumerable<Mail> GetLatestMails(int n)

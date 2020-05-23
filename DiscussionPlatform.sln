@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.1082
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscussionPlatform", "DiscussionPlatform\DiscussionPlatform.csproj", "{BF0BD7DE-3A07-453D-B741-B41789009E4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscussionPlatform", "DiscussionPlatform\DiscussionPlatform.csproj", "{BF0BD7DE-3A07-453D-B741-B41789009E4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscussionPlatform.Data", "DiscussionPlatform.Data\DiscussionPlatform.Data.csproj", "{EAB928F3-22AC-4328-A5B1-575EDDB3ED0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscussionPlatform.Data", "DiscussionPlatform.Data\DiscussionPlatform.Data.csproj", "{EAB928F3-22AC-4328-A5B1-575EDDB3ED0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscussionPlatform.Service", "DiscussionPlatform.Service\DiscussionPlatform.Service.csproj", "{313394F7-C546-4ABE-B6A9-766338D257F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscussionPlatform.Service", "DiscussionPlatform.Service\DiscussionPlatform.Service.csproj", "{313394F7-C546-4ABE-B6A9-766338D257F5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{FA3B91CA-41BF-4085-B6E6-935CB78357BB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{348B9451-D3E1-42CF-B586-F5295FCD4CBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscussionPlatform.Test", "DiscussionPlatform.Test\DiscussionPlatform.Test.csproj", "{CEFEF46B-E754-4E54-9CA8-FC8BF95A5308}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,10 @@ Global
 		{313394F7-C546-4ABE-B6A9-766338D257F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{313394F7-C546-4ABE-B6A9-766338D257F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{313394F7-C546-4ABE-B6A9-766338D257F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEFEF46B-E754-4E54-9CA8-FC8BF95A5308}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEFEF46B-E754-4E54-9CA8-FC8BF95A5308}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEFEF46B-E754-4E54-9CA8-FC8BF95A5308}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEFEF46B-E754-4E54-9CA8-FC8BF95A5308}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 		{BF0BD7DE-3A07-453D-B741-B41789009E4C} = {FA3B91CA-41BF-4085-B6E6-935CB78357BB}
 		{EAB928F3-22AC-4328-A5B1-575EDDB3ED0D} = {FA3B91CA-41BF-4085-B6E6-935CB78357BB}
 		{313394F7-C546-4ABE-B6A9-766338D257F5} = {FA3B91CA-41BF-4085-B6E6-935CB78357BB}
+		{CEFEF46B-E754-4E54-9CA8-FC8BF95A5308} = {348B9451-D3E1-42CF-B586-F5295FCD4CBD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3EF4A064-F83F-4AD5-ADB7-6937AC7B7396}
