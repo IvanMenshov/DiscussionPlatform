@@ -1,5 +1,5 @@
 ﻿@using DiscussionPlatform.Views.Manage
-@inject SignInManager<ApplicationUser> SignInManager
+@inject SignInManager<DiscussionPlatform.Data.Models.ApplicationUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }

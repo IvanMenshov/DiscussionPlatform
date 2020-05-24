@@ -1,8 +1,8 @@
 @using Microsoft.AspNetCore.Identity
 @using DiscussionPlatform.Models
 
-@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<DiscussionPlatform.Data.Models.ApplicationUser> SignInManager
+@inject UserManager<DiscussionPlatform.Data.Models.ApplicationUser> UserManager
 
 @if (SignInManager.IsSignedIn(User))
 {
