@@ -164,6 +164,7 @@
     height: 40px;
     width: 40px;
     background-color: #ddd;
+    background-repeat: no-repeat;
 }
 
 .mailAuthorImage {
@@ -324,6 +325,7 @@
     background-color: #ddd;
     border: 1px solid #555;
     background-size: 100%;
+    background-repeat: no-repeat;
 }
 
 .platformMailCount {
@@ -360,6 +362,7 @@
     width: 200px;
     height: 200px;
     background-color: #ddd;
+    background-repeat: no-repeat;
 }
 
 #UserEmailLabel, #userBioLabel, #userCreatedLabel, #userRating, #userActiveLabel {
@@ -386,10 +389,12 @@
     height: 140px;
     width: 140px;
     background-size: 100%;
+    background-repeat: no-repeat;
 }
 
 #userProfileImage {
     background-size: 100%;
+    background-repeat: no-repeat;
 }
 
 .fillSquare {
