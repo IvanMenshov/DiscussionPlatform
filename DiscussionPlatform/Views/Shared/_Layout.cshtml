@@ -32,6 +32,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a asp-controller="Platform" asp-action="Index">Форумы</a></li>
+                    <li class="active"><a asp-controller="Home" asp-action="About">Правила</a></li>
                     @if (SignInManager.IsSignedIn(User))
                     {
                         <li class="dropdown">

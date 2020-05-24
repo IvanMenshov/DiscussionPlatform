@@ -67,7 +67,8 @@
 }
 
 .sectionDescription {
-    color: #EEE;
+    color: #5af53b;
+    font-size: 35px;
 }
 
 .frontPageHeading {
@@ -442,6 +443,7 @@
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
+    color: #5af53b;
     padding-left: 15px;
     padding-right: 15px;
 }
