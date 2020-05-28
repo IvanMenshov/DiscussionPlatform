@@ -6,7 +6,7 @@
 @inject SignInManager<DiscussionPlatform.Data.Models.ApplicationUser> SignInManager
 
 @{
-    ViewData["Title"] = "Log in";
+    ViewData["Title"] = "Вход";
 }
 
 <h2>@ViewData["Title"]</h2>
@@ -14,21 +14,22 @@
     <div class="col-md-4">
         <section>
             <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
-                <h4>Use a local account to log in.</h4>
+                <h4>Используйте локальную учетную запись для входа.</h4>
                 <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="UserName"></label>
+                    <label asp-for="UserName">Имя пользователя</label>
                     <input asp-for="UserName" class="form-control" />
                     <span asp-validation-for="UserName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Password"></label>
+                    <label asp-for="Password">Пароль</label>
                     <input asp-for="Password" class="form-control" />
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <div class="checkbox">
+
                         <label asp-for="RememberMe">
                             <input asp-for="RememberMe" />
                             @Html.DisplayNameFor(m => m.RememberMe)
@@ -36,14 +37,14 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-default">Log in</button>
+                    <button type="submit" class="btn btn-default">Войти</button>
                 </div>
                 <div class="form-group">
                     <p>
-                        <a asp-action="ForgotPassword">Forgot your password?</a>
+                        <a asp-action="ForgotPassword">Забыли ваш пароль?</a>
                     </p>
                     <p>
-                        <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
+                        <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Регистрация, как новый пользователь?</a>
                     </p>
                 </div>
             </form>
@@ -59,8 +60,8 @@
                 {
                     <div>
                         <p>
-                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
+                            Не настроены внешние службы аутентификации. Смотрите <a href="https://go.microsoft.com/fwlink/?LinkID=532715">эту статью</a>
+                            для получения подробной информации о настройке этого приложения ASP.NET для поддержки входа через внешние службы.
                         </p>
                     </div>
                 }
@@ -71,7 +72,7 @@
                             <p>
                                 @foreach (var provider in loginProviders)
                                 {
-                                    <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.Name</button>
+                                    <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Войти используя этот @provider.DisplayName аккаунт">@provider.Name</button>
                                 }
                             </p>
                         </div>
